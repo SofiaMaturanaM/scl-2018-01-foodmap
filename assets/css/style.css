@@ -1,7 +1,10 @@
 body {
     background-color: black;
+    padding: 0%;
+    margin: 0%;
 }
 
 #map {
-    height: 180px;
+    height: 250px;
+    width: 250px;
 }

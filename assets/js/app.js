@@ -1,23 +1,30 @@
-fetch(`https://developers.zomato.com/api/v2.1/search?apikey=5f5a913462093a0dd31e6abfbc3022f1&entity_id=83&entity_type=city&start=11&count=30&lat=-33.4188152&lon=-70.64228059999999&radius=200&cuisines=134%2C4%2C151%2C3%2C159%2C141%2C229%2C25%2C287%2C40%2C143%2C67%2C153%2C316%2C391%2C89%2C45%2C156%2C168%2C148%2C55%2C60%2C70%2C73%2C300%2C162%2C83%2C82%2C1005%2C304%2C177%2C95%2C641%2C99&sort=real_distance&order=desc`)
-    .then(response => response.json())
-    .then(data => {
+let dropdownSearch;
 
-        // consume(data);
-        console.log(data);
-    })
+function filterByTypeOfFood() {
+    dropdownSearch = document.getElementsByClassName("foodType").value;
+    search(dropdownSearch)
+}
 
-// const consume = data => {
-//     data.data.forEach(element => {
-//         let locationPoint = element.restaurant.location.latitude;
-//         console.log(locationPoint);
+function search() {
+    fetch(`https://developers.zomato.com/api/v2.1/search?apikey=5f5a913462093a0dd31e6abfbc3022f1&entity_id=83&entity_type=city&start=11&count=30&lat=-33.4188152&lon=-70.64228059999999&radius=200&cuisines=134%2C4%2C151%2C3%2C159%2C141%2C229%2C25%2C287%2C40%2C143%2C67%2C153%2C316%2C391%2C89%2C45%2C156%2C168%2C148%2C55%2C60%2C70%2C73%2C300%2C162%2C83%2C82%2C1005%2C304%2C177%2C95%2C641%2C99&sort=real_distance&order=desc`)
+        .then(response => response.json())
+        .then(data => {
+            filterByTypeOfFood();
+            console.log(data);
+        })
+}
+const consume = data => {
+    data.data.forEach(element => {
+        let locationPoint = element.restaurant.location.latitude;
+        console.log(locationPoint);
 
 
-//     });
-// }
+    });
+}
 
-let typeOfFood = document.getElementsByClassName("foodType").value;
+// let typeOfFood = document.getElementsByClassName("foodType").value;
 
-window.onload = function mostrarMapa(puntos) {
+window.onload = function showMap(data) {
     var options = {
         enableHighAccuracy: true,
         timeout: 5000,
@@ -53,14 +60,11 @@ window.onload = function mostrarMapa(puntos) {
             shadowSize: [41, 41]
         });
 
-
-
-        // typeOfFood.forEach(location => {
+        // data.forEach(location => {
         //     L.marker([location.latitude, location.longitude], { icon: greenIcon }).addTo(mymap);
         // });
     })
 };
-
 
 
 // fetch(`curl -X GET --header "Accept: application/json" --header "user-key: 5f5a913462093a0dd31e6abfbc3022f1" "https://developers.zomato.com/api/v2.1/search?count=50&lat=-33.4188152&lon=-70.64228059999999&radius=300&cuisines=4%2C151%2C3%2C159%2C168%2C30%2C229%2C25%2C153%2C391%2C40%2C45%2C134%2C156%2C181%2C143%2C169%2C148%2C55%2C60%2C67%2C70%2C300%2C73%2C162%2C82%2C304%2C177%2C641&sort=real_distance&order=asc`")

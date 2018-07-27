@@ -1,7 +1,8 @@
 body {
     background-color: black;
-    padding: 5px;
-    margin: 5px;
+    padding: 0px;
+    margin: 0px;
+    float: left;
 }
 
 .textIndex {
@@ -9,11 +10,5 @@ body {
     background: -webkit-linear-gradient(#ffa84c, #ff7b0d);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 50px;
-}
-
-.fa-utensils {
-    color: #ff7b0d;
-    width: 250px;
-    height: 250px;
+    font-size: 80px;
 }
